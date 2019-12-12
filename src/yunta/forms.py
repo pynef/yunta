@@ -2,6 +2,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Junta
 
 
 class UserForm(UserCreationForm):
@@ -77,3 +78,37 @@ class UsuarioForm(forms.Form):
         self.fields['terminos'].widget.attrs = {
             'style': 'float:left'
         }
+
+
+class JuntaForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(JuntaForm, self).__init__(*args, **kwargs)
+        self.fields['nombre'].widget.attrs = {
+            'class': 'form-control',
+            'required': 'required',
+            'placeholder': 'Usuario',
+            'autocomplete': 'off'
+        }
+        self.fields['monto'].widget.attrs = {
+            'class': 'form-control',
+            'required': 'required',
+            'placeholder': 'Contraseña',
+            'autocomplete': 'off'
+        }
+        self.fields['clave'].widget.attrs = {
+            'class': 'form-control',
+            'required': 'required',
+            'placeholder': 'clave',
+            'autocomplete': 'off'
+        }
+        self.fields['frecuencia'].widget.attrs = {
+            'class': 'form-control2',
+            'required': 'required',
+            'placeholder': 'frecuencia',
+            'autocomplete': 'off'
+        }
+
+    class Meta:
+        model = Junta
+        fields = ('puja', 'creador')

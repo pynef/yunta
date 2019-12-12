@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import JuntaForm
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
@@ -36,10 +37,11 @@ class JuntasView(LoginRequiredMixin, TemplateView):
 
 
 class CrearJuntasView(LoginRequiredMixin, TemplateView):
-    template_name = 'plataforma/home.html'
+    template_name = 'plataforma/crear_junta.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super(CrearJuntasView, self).get_context_data(*args, **kwargs)
+        # context['forms'] = JuntaForm()
         return context
 
 
