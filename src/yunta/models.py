@@ -42,6 +42,7 @@ class Junta(models.Model):
     monto = models.IntegerField()
     nro_cuotas = models.IntegerField()
     puja = models.IntegerField(default=0)
+    clave = models.CharField(max_length=200, null=True)
     frecuencia = models.CharField('Frecuencia', max_length=10, choices=TIPO_FRECUENCIA, default='M', db_index=True)
     creador = models.ForeignKey(User, on_delete=models.PROTECT)
     activo = models.BooleanField(default=False)
