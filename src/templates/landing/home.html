@@ -1,0 +1,526 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>YUNTA</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Es donde" name="description" />
+        <meta content="code" name="PyNef" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <link rel="shortcut icon" href="{% static 'landing/images/favicon.ico' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'landing/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'landing/css/materialdesignicons.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'landing/css/pe-icon-7-stroke.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'landing/css/magnific-popup.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'landing/css/style.css' %}" />
+
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
+            <div class="container-fluid">
+
+                <a class="logo text-uppercase" href="#">
+                    <img src="{% static 'landing/images/logo-light.png' %}" alt="" class="logo-light" height="18" />
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav ml-auto navbar-center" id="mySidenav">
+                        <li class="nav-item active">
+                            <a href="#home" class="nav-link">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#services" class="nav-link">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#contact" class="nav-link">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'yunta:home' %}" class="nav-link">Ingresar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Inicio -->
+        <section class="bg-home bg-gradient" id="home">
+            <div class="home-center">
+                <div class="home-desc-center">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="home-title text-white">
+                                    <h5 class="mb-3 text-white-50">YUNTA</h5>
+                                    <h2 class="mb-4">Te ayudamos a lograr tus sueños en comunidad.</h2>
+                                    <p class="text-white-50 home-desc font-16 mb-5">
+                                        It will be as simple as Occidental in fact, it will be Occidental. To an English person it will seem like simplified English as a skeptical Cambridge.
+                                        It will be as simple as Occidental in fact, it will be Occidental. To an English person it will seem like simplified English as a skeptical Cambridge.
+                                    </p>
+                                    <div class="watch-video mt-5">
+                                        <a href="{% url 'yunta:home' %}" class="btn btn-custom mr-4">Empezar <i class="mdi mdi-chevron-right ml-1"></i></a>
+                                        <a href="#" class="video-play-icon text-white"><i class="mdi mdi-play play-icon-circle mr-2"></i> <span>Ver video</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 offset-lg-1 col-sm-6">
+                                <div class="home-img mo-mt-20">
+                                    <img src="{% static 'landing/images/home-img.png' %}" alt="" class="img-fluid mx-auto d-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- caracteristicas -->
+        <section class="features" id="features">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="nav nav-pills nav-justified features-tab mb-5" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-code-tab" data-toggle="pill" href="#pills-code" role="tab" aria-controls="pills-code" aria-selected="true">
+                                    <div class="clearfix">
+                                        <div class="features-icon float-right">
+                                            <i class="pe-7s-notebook h1"></i>
+                                        </div>
+                                        <div class="d-none d-lg-block mr-4">
+                                            <h5>Quality Code</h5>
+                                            <p>At vero eos et accusam et</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-customize-tab" data-toggle="pill" href="#pills-customize" role="tab" aria-controls="pills-customize" aria-selected="false">
+                                    <div class="clearfix">
+                                        <div class="features-icon float-right">
+                                            <i class="pe-7s-edit h1"></i>
+                                        </div>
+                                        <div class="d-none d-lg-block mr-4">
+                                            <h5>Easy to customize</h5>
+                                            <p>Sed ut unde iste error sit</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-support-tab" data-toggle="pill" href="#pills-support" role="tab" aria-controls="pills-support" aria-selected="false">
+                                    <div class="features-icon float-right">
+                                        <i class="pe-7s-headphones h1"></i>
+                                    </div>
+                                    <div class="d-none d-lg-block mr-4">
+                                        <h5>Awesome Support</h5>
+                                        <p>It will be as simple as fact</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade" id="pills-code" role="tabpanel" aria-labelledby="pills-code-tab">
+                                <div class="row align-items-center justify-content-center">
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div>
+                                            <img src="{% static 'landing/images/features-img/img-1.png' %}" alt="" class="img-fluid mx-auto d-block">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 offset-lg-1">
+                                        <div>
+                                            <div class="feature-icon mb-4">
+                                                <i class="pe-7s-notebook h1 text-primary"></i>
+                                            </div>
+                                            <h5 class="mb-3">Quality Code</h5>
+                                            <p class="text-muted">It will be as simple as Occidental in fact, it will be Occidental. To an English person it will seem like simplified English as a skeptical Cambridge.</p>
+                                            <p class="text-muted">If several languages coalesce the grammar of the resulting language </p>
+                                            <div class="row pt-4">
+                                                <div class="col-lg-6">
+                                                    <div class="text-muted">
+                                                        <p><i class="mdi mdi-checkbox-marked-outline text-primary mr-2 h6"></i> Nemo enim ipsam quia</p>
+                                                        <p><i class="mdi mdi-checkbox-marked-outline text-primary mr-2 h6"></i> Ut enim ad minima</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="text-muted">
+                                                        <p><i class="mdi mdi-checkbox-marked-outline text-primary mr-2 h6"></i> At vero eos accusamus et </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-4">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- end row -->
+                            </div>
+                            <div class="tab-pane fades how active" id="pills-customize" role="tabpanel" aria-labelledby="pills-customize-tab">
+                                <div class="row align-items-center justify-content-center">
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div>
+                                            <img src="{% static 'landing/images/features-img/img-2.png' %}" alt="" class="img-fluid mx-auto d-block">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 offset-lg-1">
+                                        <div>
+                                            <div class="feature-icon mb-4">
+                                                <i class="pe-7s-edit h1 text-primary"></i>
+                                            </div>
+                                            <h5 class="mb-3">Easy to customize</h5>
+                                            <p class="text-muted">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et</p>
+                                            <p class="text-muted">If several languages coalesce the grammar of the resulting language </p>
+                                            <div class="row pt-4">
+                                                <div class="col-lg-6">
+                                                    <div class="text-muted">
+                                                        <p><i class="mdi mdi-checkbox-marked-outline text-primary mr-2 h6"></i> Nemo enim ipsam quia</p>
+                                                        <p><i class="mdi mdi-checkbox-marked-outline text-primary mr-2 h6"></i> Ut enim ad minima</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="text-muted">
+                                                        <p><i class="mdi mdi-checkbox-marked-outline text-primary mr-2 h6"></i> At vero eos accusamus et </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-4">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- end row -->
+                            </div>
+                            <div class="tab-pane fade" id="pills-support" role="tabpanel" aria-labelledby="pills-support-tab">
+
+                                <div class="row align-items-center justify-content-center">
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div>
+                                            <img src="{% static 'landing/images/features-img/img-3.png' %}" alt="" class="img-fluid mx-auto d-block">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 offset-lg-1">
+                                        <div>
+                                            <div class="feature-icon mb-4">
+                                                <i class="pe-7s-headphones h1 text-primary"></i>
+                                            </div>
+                                            <h5 class="mb-3">Awesome Support</h5>
+                                            <p class="text-muted">It will be as simple as Occidental in fact, it will be Occidental. To an English person it will seem like simplified English as a skeptical Cambridge.</p>
+                                            <p class="text-muted">If several languages coalesce the grammar of the resulting language </p>
+                                            <div class="row pt-4">
+                                                <div class="col-lg-6">
+                                                    <div class="text-muted">
+                                                        <p><i class="mdi mdi-checkbox-marked-outline text-primary mr-2 h6"></i> Nemo enim ipsam quia</p>
+                                                        <p><i class="mdi mdi-checkbox-marked-outline text-primary mr-2 h6"></i> Ut enim ad minima</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="text-muted">
+                                                        <p><i class="mdi mdi-checkbox-marked-outline text-primary mr-2 h6"></i> At vero eos accusamus et </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-4">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicios -->
+        <section class="section bg-light" id="services">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="title text-center mb-4">
+                            <h6 class="text-primary small-title">Servicios</h6>
+                            <h4>¿Qué hacemos?</h4>
+                            <p class="text-muted">Para un mejor servicio nosotros brindamos:</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="services-box p-4 bg-white mt-4">
+                            <div class="services-img float-left mr-4">
+                                <img src="{% static 'landing/images/icons/layers.png' %}" alt="">
+                            </div>
+                            <h5>Accesibilidad</h5>
+                            <div class="overflow-hidden">
+                                <p class="text-muted">Ingresa a nuestra plataforma desde tu Computadora Tablet o Celular las 24 horas del día los 365 días del año.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="services-box p-4 bg-white mt-4">
+                            <div class="services-img float-left mr-4">
+                                <img src="{% static 'landing/images/icons/core.png' %}" alt="">
+                            </div>
+                            <h5>Agilidad</h5>
+                            <div class="overflow-hidden">
+                                <p class="text-muted">Ten siempre a la mano la disponibilidad de financiarte en el menor tiempo posible con personas de tu comunidad.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="services-box p-4 bg-white mt-4">
+                            <div class="services-img float-left mr-4">
+                                <img src="{% static 'landing/images/icons/paperdesk.png' %}" alt="">
+                            </div>
+                            <h5>Experiencia de usuario</h5>
+                            <div class="overflow-hidden">
+                                <p class="text-muted">Te brindamos, a través de la tecnología, una solución simple para el financiamiento de tus metas sin los engorrosos trámites de las entidades financieras.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="services-box p-4 bg-white mt-4">
+                            <div class="services-img float-left mr-4">
+                                <img src="{% static 'landing/images/icons/solarsystem.png' %}" alt="">
+                            </div>
+                            <h5>Comunidad</h5>
+                            <div class="overflow-hidden">
+                                <p class="text-muted">Organízate con tu familia, amigos compañeros o vecinos generando beneficios para todos.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="services-box p-4 bg-white mt-4">
+                            <div class="services-img float-left mr-4">
+                                <img src="{% static 'landing/images/icons/datatext.png' %}" alt="">
+                            </div>
+                            <h5>Puja por tu número</h5>
+                            <div class="overflow-hidden">
+                                <p class="text-muted">Decide cuando llevarte el pozo realizando tus ofertas por él antes de la fecha de cobro del mismo.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="services-box p-4 bg-white mt-4">
+                            <div class="services-img float-left mr-4">
+                                <img src="{% static 'landing/images/icons/browserscript.png' %}" alt="">
+                            </div>
+                            <h5>Soporte</h5>
+                            <div class="overflow-hidden">
+                                <p class="text-muted">Necesitas ayuda?  Consulta en nuestra comunidad en línea o ponte en contacto con nosotros a través de este link.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contadores -->
+        <section class="section bg-gradient">
+            <div class="container-fluid">
+                <div class="row" id="counter">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="text-center p-3">
+                            <div class="counter-icon text-white-50 mb-4">
+                                <i class="pe-7s-add-user display-4"></i>
+                            </div>
+                            <div class="counter-content text-white">
+                                <h2 class="counter-value mb-3" data-count="100">0</h2>
+                                <h5 class="counter-name">Usuarios</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="text-center p-3">
+                            <div class="counter-icon text-white-50 mb-4">
+                                <i class="pe-7s-cart display-4"></i>
+                            </div>
+                            <div class="counter-content text-white">
+                                <h2 class="mb-3"><span class="counter-value" data-count="50">10</span> +</h2>
+                                <h5 class="counter-name">Clientes</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="text-center p-3">
+                            <div class="counter-icon text-white-50 mb-4">
+                                <i class="pe-7s-smile display-4"></i>
+                            </div>
+                            <div class="counter-content text-white">
+                                <h2 class="counter-value mb-3" data-count="583">100</h2>
+                                <h5 class="counter-name">likes</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="text-center p-3">
+                            <div class="counter-icon text-white-50 mb-4">
+                                <i class="pe-7s-medal display-4"></i>
+                            </div>
+                            <div class="counter-content text-white">
+                                <h2 class="counter-value mb-3" data-count="0">-5</h2>
+                                <h5 class="counter-name">Precio</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- contacto -->
+        <section class="section" id="contact">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="title text-center mb-5">
+                            <h6 class="text-primary small-title">Contactenos</h6>
+                            <h4>¿Tiene alguna pregunta?</h4>
+                            <p class="text-muted">No dude consultarnos cualquier requerimiento que tenga.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="get-in-touch">
+                            <h5>Póngase en contacto</h5>
+                            <p class="text-muted mb-5"></p>
+
+                            <div class="mb-3">
+                                <div class="get-touch-icon float-left mr-3">
+                                    <i class="pe-7s-mail h2 text-primary"></i>
+                                </div>
+                                <div class="overflow-hidden">
+                                    <h5 class="font-16 mb-0">Correo electronico</h5>
+                                    <p class="text-muted">suport@yunta.com</p>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="get-touch-icon float-left mr-3">
+                                    <i class="pe-7s-phone h2 text-primary"></i>
+                                </div>
+                                <div class="overflow-hidden">
+                                    <h5 class="font-16 mb-0">Celular</h5>
+                                    <p class="text-muted">999 999 999</p>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <div class="get-touch-icon float-left mr-3">
+                                    <i class="pe-7s-map-marker h2 text-primary"></i>
+                                </div>
+                                <div class="overflow-hidden">
+                                    <h5 class="font-16 mb-0">Dirección</h5>
+                                    <p class="text-muted">Av. Javier prado este 488</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="custom-form bg-white">
+                            <div id="message"></div>
+                            <form method="post" action="#" name="contact-form" id="contact-form">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="name">Nombre</label>
+                                            <input name="name" id="name" type="text" class="form-control" placeholder="Enter your name...">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="email">Correo electronico</label>
+                                            <input name="email" id="email" type="email" class="form-control" placeholder="Enter your email...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="subject">Asunto</label>
+                                            <input name="subject" id="subject" type="text" class="form-control" placeholder="Enter Subject...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="comments">Mensaje</label>
+                                            <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Enter your message..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12 text-right">
+                                        <input type="submit" id="submit" name="send" class="submitBnt btn btn-custom" value="Send Message">
+                                        <div id="simple-msg"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Pie de pagina -->
+        <footer class="footer bg-dark">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="text-center">
+                            <div class="footer-logo mb-3">
+                                <img src="{% static 'landing/images/logo-light.png' %}" alt="" height="20">
+                            </div>
+                            <ul class="list-inline footer-list text-center mt-5">
+                                <li class="list-inline-item"><a href="#home">Inicio</a></li>
+                                <li class="list-inline-item"><a href="#services">Servicios</a></li>
+                                <li class="list-inline-item"><a href="#contact">Contacto</a></li>
+                                <li class="list-inline-item"><a href="{% url 'yunta:home' %}">Ingresar</a></li>
+                            </ul>
+                            <ul class="list-inline social-links mb-4 mt-5">
+                                <li class="list-inline-item"><a href="#"><i class="mdi mdi-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="#"><i class="mdi mdi-twitter"></i></a></li>
+                                <li class="list-inline-item"><a href="#"><i class="mdi mdi-instagram"></i></a></li>
+                                <li class="list-inline-item"><a href="#"><i class="mdi mdi-google-plus"></i></a></li>
+                            </ul>
+                            <p class="text-white-50 mb-4">2019 © Yunta. Design by <a href="#" target="_blank" class="text-white-50">Jump</a> </p>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </footer>
+
+        <a href="#" class="back-to-top" id="back-to-top"> <i class="mdi mdi-chevron-up"> </i> </a>
+        <script src="{% static 'landing/js/jquery.min.js' %}"></script>
+        <script src="{% static 'landing/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'landing/js/jquery.easing.min.js' %}"></script>
+        <script src="{% static 'landing/js/scrollspy.min.js' %}"></script>
+        <script src="{% static 'landing/js/jquery.magnific-popup.min.js' %}"></script>
+        <script src="{% static 'landing/js/counter.int.js' %}"></script>
+        <script src="{% static 'landing/js/app.js' %}"></script>
+    </body>
+
+</html>
