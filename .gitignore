@@ -25,6 +25,8 @@ parts/
 sdist/
 var/
 logs/
+src/staticfiles/*
+src/staticfiles/
 *.egg-info/
 .installed.cfg
 *.egg
