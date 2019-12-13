@@ -8,6 +8,26 @@
 {% block js %}
 <script src="{% static 'plataforma/libs/morris-js/morris.min.js' %}"></script>
 <script src="{% static 'plataforma/js/pages/dashboard.init.js' %}"></script>
+
+        <!-- third party js -->
+        <script src="{% static 'plataforma/libs/datatables/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'plataforma/libs/datatables/dataTables.bootstrap4.js' %}"></script>
+        <script src="{% static 'plataforma/libs/datatables/dataTables.responsive.min.js' %}"></script>
+        <script src="{% static 'plataforma/libs/datatables/responsive.bootstrap4.min.js' %}"></script>
+        <script src="{% static 'plataforma/libs/datatables/dataTables.buttons.min.js' %}"></script>
+        <script src="{% static 'plataforma/libs/datatables/buttons.bootstrap4.min.js' %}"></script>
+        <script src="{% static 'plataforma/libs/datatables/buttons.html5.min.js' %}"></script>
+        <script src="{% static 'plataforma/libs/datatables/buttons.flash.min.js' %}"></script>
+        <script src="{% static 'plataforma/libs/datatables/buttons.print.min.js' %}"></script>
+        <script src="{% static 'plataforma/libs/datatables/dataTables.keyTable.min.js' %}"></script>
+        <script src="{% static 'plataforma/libs/datatables/dataTables.select.min.js' %}"></script>
+        <script src="{% static 'plataforma/libs/pdfmake/pdfmake.min.js' %}"></script>
+        <script src="{% static 'plataforma/libs/pdfmake/vfs_fonts.js' %}"></script>
+        <!-- third party js ends -->
+
+        <!-- Datatables init -->
+        <script src="{% static 'plataforma/js/pages/datatables.init.js' %}"></script>
+
 {% endblock js %}
 {% block script %}{% endblock script %}
 
@@ -116,52 +136,42 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="row">
-            <div class="col-xl-4">
-                <div class="card-box">
-                    <div class="dropdown float-right">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                    </div>
-                    <h4 class="header-title mt-0">Daily Sales</h4>
-                    <div class="widget-chart text-center">
-                        <div id="morris-donut-example" dir="ltr" style="height: 245px;" class="morris-chart"></div>
-                        <ul class="list-inline chart-detail-list mb-0">
-                            <li class="list-inline-item">
-                                <h5 style="color: #ff8acc;"><i class="fa fa-circle mr-1"></i>Series A</h5>
-                            </li>
-                            <li class="list-inline-item">
-                                <h5 style="color: #5b69bc;"><i class="fa fa-circle mr-1"></i>Series B</h5>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="card-box">
-                    <div class="dropdown float-right">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                    </div>
-                    <h4 class="header-title mt-0">Statistics</h4>
-                    <div id="morris-bar-example" dir="ltr" style="height: 280px;" class="morris-chart"></div>
-                </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="card-box">
-                    <div class="dropdown float-right">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                    </div>
-                    <h4 class="header-title mt-0">Total Revenue</h4>
-                    <div id="morris-line-example" dir="ltr" style="height: 280px;" class="morris-chart"></div>
-                </div>
-            </div>
+    </div>
+ <div class="row">
+    <div class="col-12">
+        <div class="card-box table-responsive">
+            <h4 class="mt-0 header-title">Todas las juntas activas</h4>
+            <table id="responsive-datatable" class="table table-bordered table-bordered dt-responsive nowrap">
+                <thead>
+                    <tr>
+                        <th>Cod</th>
+                        <th>Motivo</th>
+                        <th>Monto</th>
+                        <th>Nro cuotas</th>
+                        <th>Frecuencia</th>
+                        <th>Creado</th>
+                        <th>Publico</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for junta in juntas %}
+                    <tr>
+                        <td>{{junta.id}}</td>
+                        <td>{{junta.nombre}}</td>
+                        <td>{{junta.monto}}</td>
+                        <td>{{junta.nro_cuotas}}</td>
+                        <td>{{junta.frecuencia}}</td>
+                        <td>{{junta.creador.username}}</td>
+                        <td>{{junta.abierto}}</td>
+                        <td>
+                            <button class="btn btn-success waves-effect waves-light"> <i class="fa fa-rocket mr-1"></i> <span>Afiliarte</span> </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 {% endblock content %}

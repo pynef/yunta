@@ -15,6 +15,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'landing/css/pe-icon-7-stroke.css' %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'landing/css/magnific-popup.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'landing/css/style.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'plataforma/libs/fancybox/jquery.fancybox.css' %}" />
 
     </head>
 
@@ -36,7 +37,7 @@
                             <a href="#home" class="nav-link">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#features" class="nav-link">Caracteristicas</a>
+                            <a href="#features" class="nav-link">Beneficios</a>
                         </li>
                         <li class="nav-item">
                             <a href="#services" class="nav-link">Servicios</a>
@@ -63,12 +64,13 @@
                                     <h5 class="mb-3 text-white-50">YUNTA</h5>
                                     <h2 class="mb-4">Te ayudamos a lograr tus sueños en comunidad.</h2>
                                     <p class="text-white-50 home-desc font-16 mb-5">
-                                        It will be as simple as Occidental in fact, it will be Occidental. To an English person it will seem like simplified English as a skeptical Cambridge.
-                                        It will be as simple as Occidental in fact, it will be Occidental. To an English person it will seem like simplified English as a skeptical Cambridge.
+                                        Yunta es la solucion rapida, facil y confiable para tu financiamiento personal.
+                                        Sin tanto papeleo podras tener los beneficios con tus amigos o gente de la comunidad.
+                                        Haciendo uso del celular o una pagina web.
                                     </p>
                                     <div class="watch-video mt-5">
                                         <a href="{% url 'yunta:home' %}" class="btn btn-custom mr-4">Empezar <i class="mdi mdi-chevron-right ml-1"></i></a>
-                                        <a href="#" class="video-play-icon text-white"><i class="mdi mdi-play play-icon-circle mr-2"></i> <span>Ver video</span></a>
+                                        <a data-fancybox href="https://www.youtube.com/watch?v=q2exg7Cw6ZE" class="video-play-icon text-white"><i class="mdi mdi-play play-icon-circle mr-2"></i> <span>Ver video</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -96,8 +98,8 @@
                                             <i class="pe-7s-notebook h1"></i>
                                         </div>
                                         <div class="d-none d-lg-block mr-4">
-                                            <h5>Quality Code</h5>
-                                            <p>At vero eos et accusam et</p>
+                                            <h5>Visita y Arma tu yunta</h5>
+                                            <p>Registrate y se parte de la comunidad Yunta</p>
                                         </div>
                                     </div>
                                 </a>
@@ -109,8 +111,8 @@
                                             <i class="pe-7s-edit h1"></i>
                                         </div>
                                         <div class="d-none d-lg-block mr-4">
-                                            <h5>Easy to customize</h5>
-                                            <p>Sed ut unde iste error sit</p>
+                                            <h5>Invita y participa</h5>
+                                            <p>Invita a tus amigos y arma tu junta</p>
                                         </div>
                                     </div>
                                 </a>
@@ -121,8 +123,8 @@
                                         <i class="pe-7s-headphones h1"></i>
                                     </div>
                                     <div class="d-none d-lg-block mr-4">
-                                        <h5>Awesome Support</h5>
-                                        <p>It will be as simple as fact</p>
+                                        <h5>Gana la junta con la puja</h5>
+                                        <p>Participa de la junta y lleva el pozo al instante.</p>
                                     </div>
                                 </a>
                             </li>
@@ -288,7 +290,7 @@
                             </div>
                             <h5>Experiencia de usuario</h5>
                             <div class="overflow-hidden">
-                                <p class="text-muted">Te brindamos, a través de la tecnología, una solución simple para el financiamiento de tus metas sin los engorrosos trámites de las entidades financieras.</p>
+                                <p class="text-muted">Te brindamos, una solución simple para el financiamiento de tus metas sin los engorrosos trámites de las financieras.</p>
                             </div>
                         </div>
                     </div>
@@ -496,13 +498,13 @@
                             </div>
                             <ul class="list-inline footer-list text-center mt-5">
                                 <li class="list-inline-item"><a href="#home">Inicio</a></li>
-                                <li class="list-inline-item"><a href="#features">Caracteristicas</a></li>
+                                <li class="list-inline-item"><a href="#features">Beneficios</a></li>
                                 <li class="list-inline-item"><a href="#services">Servicios</a></li>
                                 <li class="list-inline-item"><a href="#contact">Contacto</a></li>
                                 <li class="list-inline-item"><a href="{% url 'yunta:home' %}">Ingresar</a></li>
                             </ul>
                             <ul class="list-inline social-links mb-4 mt-5">
-                                <li class="list-inline-item"><a href="#"><i class="mdi mdi-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="https://www.facebook.com/Yunta-Per%C3%BA-103907587776603/"><i class="mdi mdi-facebook"></i></a></li>
                                 <li class="list-inline-item"><a href="#"><i class="mdi mdi-twitter"></i></a></li>
                                 <li class="list-inline-item"><a href="#"><i class="mdi mdi-instagram"></i></a></li>
                                 <li class="list-inline-item"><a href="#"><i class="mdi mdi-google-plus"></i></a></li>
@@ -525,6 +527,7 @@
         <script src="{% static 'landing/js/jquery.magnific-popup.min.js' %}"></script>
         <script src="{% static 'landing/js/counter.int.js' %}"></script>
         <script src="{% static 'landing/js/app.js' %}"></script>
+        <script src="{% static 'plataforma/libs/fancybox/jquery.fancybox.js' %}"></script>
     </body>
 
 </html>

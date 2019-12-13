@@ -7,8 +7,25 @@
 {% block script %}{% endblock script %}
 
 {% block content %}
-                    <div class="container-fluid">
-                        <h2>Monedero</h2>
+<div class="row">
 
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card-box widget-user">
+                            <div class="text-center">
+                                <h2 class="font-weight-normal text-primary" data-plugin="counterup">{{monedero.saldo_actual}}</h2>
+                                <h5>Mi saldo neto</h5>
+                            </div>
+                        </div>
                     </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card-box widget-user">
+                        <div class="text-center">
+                            <h2 class="font-weight-normal text-warning" data-plugin="counterup">{{monedero.saldo_contable}}</h2>
+                            <h5>Mi saldo contable</h5>
+                        </div>
+                    </div>
+                </div>
+
+</div>
 {% endblock content %}

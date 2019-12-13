@@ -86,29 +86,33 @@ class JuntaForm(forms.ModelForm):
         super(JuntaForm, self).__init__(*args, **kwargs)
         self.fields['nombre'].widget.attrs = {
             'class': 'form-control',
-            'required': 'required',
-            'placeholder': 'Usuario',
-            'autocomplete': 'off'
+            'placeholder': 'nombre',
+            'required': 'required'
         }
         self.fields['monto'].widget.attrs = {
             'class': 'form-control',
-            'required': 'required',
-            'placeholder': 'Contraseña',
-            'autocomplete': 'off'
+            'placeholder': 'monto',
+            'required': 'required'
         }
         self.fields['clave'].widget.attrs = {
             'class': 'form-control',
-            'required': 'required',
             'placeholder': 'clave',
-            'autocomplete': 'off'
+            'required': 'required'
+        }
+        self.fields['nro_cuotas'].widget.attrs = {
+            'class': 'form-control select2',
+            'placeholder': 'nro_cuotas',
+            'required': 'required'
         }
         self.fields['frecuencia'].widget.attrs = {
-            'class': 'form-control2',
-            'required': 'required',
+            'class': 'form-control select2',
             'placeholder': 'frecuencia',
-            'autocomplete': 'off'
+            'required': 'required'
+        }
+        self.fields['abierto'].widget.attrs = {
+            'placeholder': 'abierto'
         }
 
     class Meta:
         model = Junta
-        fields = ('puja', 'creador')
+        fields = ('nombre', 'monto', 'clave', 'frecuencia', 'nro_cuotas', 'abierto')

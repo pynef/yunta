@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomeView, MonederoView, CronogramaView, JuntasView, CrearJuntasView, ReportesView
+from .views import HomeView, MonederoView, CronogramaView, JuntasView, CrearJuntasView, ReportesView, MisJuntasView
 app_name = 'yunta'
 
 urlpatterns = [
@@ -7,6 +7,7 @@ urlpatterns = [
     path('monedero', MonederoView.as_view(), name='monedero'),
     path('cronograma', CronogramaView.as_view(), name='cronograma'),
     path('juntas', JuntasView.as_view(), name='juntas'),
+    path('mis_juntas', MisJuntasView.as_view(), name='mis_juntas'),
     path('crear_junta', CrearJuntasView.as_view(), name='crear_junta'),
     path('reportes', ReportesView.as_view(), name='reportes'),
 ]

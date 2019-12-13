@@ -43,9 +43,65 @@ class Junta(models.Model):
     nro_cuotas = models.IntegerField()
     puja = models.IntegerField(default=0)
     clave = models.CharField(max_length=200, null=True)
+    nro_participantes = models.IntegerField(default=2)
     frecuencia = models.CharField('Frecuencia', max_length=10, choices=TIPO_FRECUENCIA, default='M', db_index=True)
     creador = models.ForeignKey(User, on_delete=models.PROTECT)
     activo = models.BooleanField(default=False)
+    abierto = models.BooleanField(default=False)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_modificacion = models.DateTimeField(auto_now=True)
+    usuario_creacion = models.ForeignKey(User, on_delete=models.PROTECT, related_name='+', null=True, blank=True)
+    usuario_modificacion = models.ForeignKey(User, on_delete=models.PROTECT, related_name='+', null=True, blank=True)
+
+    def __str__(self):
+        return u'{}'.format(self.nombre)
+
+    class Meta:
+        ordering = ['-fecha_creacion']
+        verbose_name = u'Junta'
+        verbose_name_plural = u'Juntas'
+
+
+class ParticipanteJunta(models.Model):
+    junta = models.ForeignKey(Junta,  on_delete=models.PROTECT)
+    participante = models.ForeignKey(User,  on_delete=models.PROTECT)
+    monto = models.IntegerField()
+    nro_cuotas = models.IntegerField()
+    cuota = models.IntegerField()
+    mi_cuota = models.IntegerField
+    puja = models.IntegerField(default=0)
+    mi_puja = models.IntegerField(default=0)
+    fecha = models.DateField(null=True)
+    es_creador = models.BooleanField(default=False)
+
+    estado = models.BooleanField(default=True)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_modificacion = models.DateTimeField(auto_now=True)
+    usuario_creacion = models.ForeignKey(User, on_delete=models.PROTECT, related_name='+', null=True, blank=True)
+    usuario_modificacion = models.ForeignKey(User, on_delete=models.PROTECT, related_name='+', null=True, blank=True)
+
+    def __str__(self):
+        return u'{}'.format(self.nombre)
+
+    class Meta:
+        ordering = ['-fecha_creacion']
+        verbose_name = u'Junta'
+        verbose_name_plural = u'Juntas'
+
+
+class DetalleParticipanteJunta(models.Model):
+    participante_junta = models.ForeignKey(ParticipanteJunta,  on_delete=models.PROTECT)
+    monto = models.IntegerField()
+    nro_cuotas = models.IntegerField()
+    nro_cuota_actual = models.IntegerField()
+    cuota = models.IntegerField()
+    cuota_actual = models.IntegerField
+    puja =  models.IntegerField(default=0)
+    puja_actual = models.IntegerField(default=0)
+    fecha_pago = models.DateField(null=True)
+    esta_pagado = models.BooleanField(default=False)
+
+    estado = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_modificacion = models.DateTimeField(auto_now=True)
     usuario_creacion = models.ForeignKey(User, on_delete=models.PROTECT, related_name='+', null=True, blank=True)

@@ -6,7 +6,7 @@ from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render
-from yunta.models import Usuario
+from yunta.models import Usuario, Monedero, Junta
 from yunta.forms import UserForm, UsuarioForm
 
 
@@ -31,11 +31,11 @@ class RegistrateView(TemplateView):
         context = self.get_context_data()
         user_form = UserForm(request.POST)
         usuario_form = UsuarioForm(request.POST)
-        import pdb; pdb.set_trace()
+
         if user_form.is_valid() and usuario_form.is_valid():
+
             with transaction.atomic():
                 user = user_form.save()
-
                 with transaction.atomic():
                     # creando el perfil
                     usuario = Usuario()
@@ -46,6 +46,11 @@ class RegistrateView(TemplateView):
                     usuario.apellido_paterno = usuario_form.cleaned_data["apellido_paterno"]
                     usuario.apellido_materno = usuario_form.cleaned_data["apellido_materno"]
                     usuario.save()
+                    monedero = Monedero()
+                    monedero.saldo_actual = 10000
+                    monedero.saldo_contable = 0
+                    monedero.usuario = user
+                    monedero.save()
 
             url = reverse('login')
             return HttpResponseRedirect(url)
