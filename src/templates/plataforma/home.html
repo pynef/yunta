@@ -140,16 +140,18 @@
  <div class="row">
     <div class="col-12">
         <div class="card-box table-responsive">
-            <h4 class="mt-0 header-title">Todas las juntas activas</h4>
+            <h4 class="mt-0 header-title">Todas las juntas activas</h4><br/><br/>
             <table id="responsive-datatable" class="table table-bordered table-bordered dt-responsive nowrap">
                 <thead>
                     <tr>
-                        <th>Cod</th>
+                        <th>Código</th>
                         <th>Motivo</th>
                         <th>Monto</th>
                         <th>Nro cuotas</th>
                         <th>Frecuencia</th>
-                        <th>Creado</th>
+                        <th>Nro participantes</th>
+                        <th>Creado por</th>
+                        <th>Fechas de creación</th>
                         <th>Publico</th>
                         <th></th>
                     </tr>
@@ -159,13 +161,17 @@
                     <tr>
                         <td>{{junta.id}}</td>
                         <td>{{junta.nombre}}</td>
-                        <td>{{junta.monto}}</td>
+                        <td>S/. {{junta.monto|force_escape}}</td>
                         <td>{{junta.nro_cuotas}}</td>
                         <td>{{junta.frecuencia}}</td>
+                        <td>{{junta.nro_participantes}}</td>
                         <td>{{junta.creador.username}}</td>
+                        <td>{{junta.fecha_creacion}}</td>
                         <td>{{junta.abierto}}</td>
                         <td>
-                            <button class="btn btn-success waves-effect waves-light"> <i class="fa fa-rocket mr-1"></i> <span>Afiliarte</span> </button>
+                            <a href="{% url 'yunta:junta' junta.id %}" style="color:#FFF;" class="btn btn-success waves-effect waves-light">
+                                <i class="fa fa-rocket mr-1"></i> <span>Afiliarte</span>
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}

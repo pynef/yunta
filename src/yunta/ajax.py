@@ -3,18 +3,21 @@ import datetime
 from django.http import JsonResponse
 
 from .models import Junta
+from .functions import agregar_participante_junta
 
 
 def clave_junta(request):
     response = {'error': False, 'correct': False, 'data': '', 'mensaje': ''}
-    print(request.POST)
-    junta_id = request.POST.get('junta_id')
-    junta_clave = request.POST.get('junta_clave')
-    junta = Junta.objects.filer(id=junta_id).update(clave=junta_clave)
+    user_id = request.GET.get('user_id')
+    junta_id = request.GET.get('junta_id')
+    junta_clave = request.GET.get('junta_clave')
+    junta = Junta.objects.filter(id=junta_id, clave=junta_clave)
 
     if junta.count():
+        response = agregar_participante_junta(junta_id, user_id)
         response.update({'correct': True})
+        print(response)
     else:
-        response.update({'error': True})
+        response.update({'message': "Error en la contraseña!!!"})
 
     return JsonResponse(response)

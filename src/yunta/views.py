@@ -16,7 +16,11 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomeView, self).get_context_data(*args, **kwargs)
-        context['juntas'] = ParticipanteJunta.objects.filter(es_activo=True)
+        juntas_donde_participo = sorted(set([participante_junta.junta_id for participante_junta in ParticipanteJunta.objects.filter(participante_id=self.request.user)]))
+        juntas_activas = [junt.id for junt in Junta.objects.filter(activo=True, abierto=True)]
+        juntas_libres = list(set(juntas_activas) - set(juntas_donde_participo))
+        juntas = Junta.objects.filter(id__in=juntas_libres)
+        context['juntas'] = juntas
         return context
 
 
@@ -27,13 +31,33 @@ class JuntaViews(LoginRequiredMixin, TemplateView):
         context = super(JuntaViews, self).get_context_data(*args, **kwargs)
         junta_id = self.kwargs.get('junta_id')
         junta = get_object_or_404(Junta, id=junta_id)
-        personas = Usuario.objects.filter(user_id=self.request.user.id)
+        personas = ParticipanteJunta.objects.filter(junta_id=junta_id)
         permisos = ParticipanteJunta.objects.filter(junta_id=junta_id, participante_id=self.request.user.id)
+        propietario = Junta.objects.filter(id=junta_id, abierto=False, iniciar=False, creador_id=self.request.user.id)
+
+        if junta.nro_cuotas != personas.count():
+            context['habilidar_boton'] = True
+
+        if propietario.count() > 0:
+            context['iniciar'] = True
+        else:
+            context['iniciar'] = False
+
         context.update({
             'junta': junta,
             'personas': personas,
             'permisos': permisos
         })
+        return context
+
+
+class MisJuntasView(LoginRequiredMixin, TemplateView):
+    template_name = 'plataforma/mis_juntas.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(MisJuntasView, self).get_context_data(*args, **kwargs)
+        print(ParticipanteJunta.objects.filter(participante_id=self.request.user.id))
+        context['mis_juntas'] = ParticipanteJunta.objects.filter(participante_id=self.request.user.id)
         return context
 
 
@@ -52,27 +76,6 @@ class CronogramaView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(CronogramaView, self).get_context_data(*args, **kwargs)
-        return context
-
-
-class JuntasView(LoginRequiredMixin, TemplateView):
-    template_name = 'plataforma/juntas.html'
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(JuntasView, self).get_context_data(*args, **kwargs)
-        context['juntas'] = ParticipanteJunta.objects.filter(participante_id=self.request.user.id,
-                                                             es_creador=True)
-        return context
-
-
-class MisJuntasView(LoginRequiredMixin, TemplateView):
-    template_name = 'plataforma/juntas.html'
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(MisJuntasView, self).get_context_data(*args, **kwargs)
-        context['juntas'] = ParticipanteJunta.objects.filter(creador_id=self.request.user.id,
-                                                             participante_id=self.request.user.id,
-                                                             es_creador=True)
         return context
 
 

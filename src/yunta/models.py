@@ -48,6 +48,7 @@ class Junta(models.Model):
     creador = models.ForeignKey(User, on_delete=models.PROTECT)
     activo = models.BooleanField(default=False)
     abierto = models.BooleanField(default=False)
+    iniciar = models.BooleanField(default=False)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_modificacion = models.DateTimeField(auto_now=True)
     usuario_creacion = models.ForeignKey(User, on_delete=models.PROTECT, related_name='+', null=True, blank=True)
@@ -74,6 +75,7 @@ class ParticipanteJunta(models.Model):
     fecha = models.DateField(null=True)
     es_activo = models.BooleanField(default=True)
     es_creador = models.BooleanField(default=False)
+    iniciar = models.BooleanField(default=False)
 
     estado = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)

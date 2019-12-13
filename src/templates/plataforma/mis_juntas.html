@@ -17,14 +17,24 @@
                                     <th>#</th>
                                     <th>Motivo</th>
                                     <th>Monto</th>
+                                    <th>Cuota</th>
+                                    <th>Nro cuotas</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for junta in juntas %}
+                                {% for junta in mis_juntas %}
                                 <tr>
                                     <th scope="row">{{junta.id}}</th>
-                                    <td>{{junta.nombre}}</td>
-                                    <td>{{junta.monto}}</td>
+                                    <td>{{junta.junta.nombre}}</td>
+                                    <td>S/ {{junta.junta.monto|force_escape}}</td>
+                                    <td>S/ {{junta.cuota|force_escape}}</td>
+                                    <td>{{junta.junta.nro_cuotas}}</td>
+                                    <td>
+                                    <a href="{% url 'yunta:junta' junta.junta.id %}" style="color:#FFF;" class="btn btn-xs btn-info waves-effect waves-light">
+                                        <span>Ver detalles</span>
+                                    </a>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
