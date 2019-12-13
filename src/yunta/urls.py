@@ -10,7 +10,7 @@ urlpatterns = [
 
     path('home', HomeView.as_view(), name='home'),
     path('junta/<int:junta_id>/', JuntaViews.as_view(), name='junta'),
-    path('mis_juntas', MisJuntasView.as_view(), name='mis_juntas'),
+        path('mis_juntas', MisJuntasView.as_view(), name='mis_juntas'),
 
     path('monedero', MonederoView.as_view(), name='monedero'),
     path('cronograma', CronogramaView.as_view(), name='cronograma'),

@@ -114,7 +114,7 @@ class CrearJuntasView(LoginRequiredMixin, TemplateView):
                 participante_junta.es_activo = True
                 participante_junta.save()
 
-            url = reverse('yunta:juntas')
+            url = reverse('yunta:mis_juntas')
             return HttpResponseRedirect(url)
         else:
             context.update({
