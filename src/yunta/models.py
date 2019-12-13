@@ -39,9 +39,9 @@ class Usuario(models.Model):
 
 class Junta(models.Model):
     nombre = models.CharField(max_length=200)
-    monto = models.IntegerField()
+    monto = models.DecimalField(decimal_places=2, max_digits=8)
     nro_cuotas = models.IntegerField()
-    puja = models.IntegerField(default=0)
+    puja = models.DecimalField(decimal_places=2, max_digits=8, default=0)
     clave = models.CharField(max_length=200, null=True)
     nro_participantes = models.IntegerField(default=2)
     frecuencia = models.CharField('Frecuencia', max_length=10, choices=TIPO_FRECUENCIA, default='M', db_index=True)
@@ -65,13 +65,14 @@ class Junta(models.Model):
 class ParticipanteJunta(models.Model):
     junta = models.ForeignKey(Junta,  on_delete=models.PROTECT)
     participante = models.ForeignKey(User,  on_delete=models.PROTECT)
-    monto = models.IntegerField()
+    monto = models.DecimalField(decimal_places=2, max_digits=8, default=0)
     nro_cuotas = models.IntegerField()
     cuota = models.IntegerField()
-    mi_cuota = models.IntegerField
+    mi_cuota = models.DecimalField(decimal_places=2, max_digits=8, default=0)
     puja = models.IntegerField(default=0)
-    mi_puja = models.IntegerField(default=0)
+    mi_puja = models.DecimalField(decimal_places=2, max_digits=8, default=0)
     fecha = models.DateField(null=True)
+    es_activo = models.BooleanField(default=True)
     es_creador = models.BooleanField(default=False)
 
     estado = models.BooleanField(default=True)
@@ -81,12 +82,13 @@ class ParticipanteJunta(models.Model):
     usuario_modificacion = models.ForeignKey(User, on_delete=models.PROTECT, related_name='+', null=True, blank=True)
 
     def __str__(self):
-        return u'{}'.format(self.nombre)
+        return u'{}'.format(self.monto)
 
     class Meta:
         ordering = ['-fecha_creacion']
         verbose_name = u'Junta'
         verbose_name_plural = u'Juntas'
+        unique_together = (('junta', 'participante'),)
 
 
 class DetalleParticipanteJunta(models.Model):
@@ -96,7 +98,7 @@ class DetalleParticipanteJunta(models.Model):
     nro_cuota_actual = models.IntegerField()
     cuota = models.IntegerField()
     cuota_actual = models.IntegerField
-    puja =  models.IntegerField(default=0)
+    puja = models.IntegerField(default=0)
     puja_actual = models.IntegerField(default=0)
     fecha_pago = models.DateField(null=True)
     esta_pagado = models.BooleanField(default=False)
@@ -108,7 +110,7 @@ class DetalleParticipanteJunta(models.Model):
     usuario_modificacion = models.ForeignKey(User, on_delete=models.PROTECT, related_name='+', null=True, blank=True)
 
     def __str__(self):
-        return u'{}'.format(self.nombre)
+        return u'{}'.format(self.cuota)
 
     class Meta:
         ordering = ['-fecha_creacion']

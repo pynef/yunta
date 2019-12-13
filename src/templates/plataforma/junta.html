@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Junta{% endblock title %}
+{% block css %}
+    <link href="{% static 'plataforma/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock css %}
+{% block style %}{% endblock style %}
+
+
+{% block content %}
+
+    {% if junta.abierto %}
+        <div class="card-box">
+            <h2>
+                {{junta.nombre}} | <span class="badge badge-success">ABIERTO</span>
+            </h2>
+        </div>
+        {% if permisos %}
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card-box">
+                    <div class="container-fluid">
+                        <h4>Detalles</h4>
+                            <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nombre</th>
+                                        <th>Detalle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-active">
+                                        <th scope="row">1</th>
+                                        <td>Motivo</td>
+                                        <td>{{junta.nombre}}</td>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Monto Total</td>
+                                        <td>S/. {{junta.monto|force_escape}}</td>
+                                    <tr class="table-success">
+                                        <th scope="row">3</th>
+                                        <td>Numero de coutas</td>
+                                        <td>{{junta.nro_cuotas}}</td>
+                                    <tr>
+                                        <th scope="row">4</th>
+                                        <td>Frecuencia</td>
+                                        <td>{{junta.get_frecuencia_display}}</td>
+                                    <tr class="table-info">
+                                        <th scope="row">5</th>
+                                        <td>Puja</td>
+                                        <td>{{junta.puja}}</td>
+                                    <tr>
+                                        <th scope="row">6</th>
+                                        <td>Número de participantes</td>
+                                        <td>{{junta.nro_participantes}}</td>
+                                    <tr class="table-warning">
+                                        <th scope="row">7</th>
+                                        <td>Creador</td>
+                                        <td>{{junta.creador}}</td>
+                                    <tr>
+                                        <th scope="row">8</th>
+                                        <td>Aun esta abierto</td>
+                                        <td>
+                                            {% if junta.abierto %}
+                                            <div class="radio radio-success radio-single">
+                                                <input type="radio" value="option2.1" checked />
+                                                <label></label>
+                                            </div>
+                                            {% else %}
+                                            <div class="radio radio-danger radio-single">
+                                                <input type="radio" value="option2.1" checked />
+                                                <label></label>
+                                            </div>
+                                            {% endif %}
+                                        </td>
+                                    <tr class="table-danger">
+                                        <th scope="row">9</th>
+                                        <td>Fecha creada</td>
+                                        <td>{{junta.fecha_creacion}}</td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="card-box">
+                    <div class="container-fluid">
+                        <h4>Miembres</h4>
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nombres</th>
+                                            <th>Apellido Paterno</th>
+                                            <th>Apellido Materno</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for persona in personas %}
+                                        <tr>
+                                            <th scope="row">{{persona.id}}</th>
+                                            <td>{{persona.nombres}}</td>
+                                            <td>{{persona.apellido_paterno}}</td>
+                                            <td>{{persona.apellido_materno}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="card-box">
+            <h2>
+                <label for="junta_clave">Ingrese clave</label>
+                <input id ="junta_clave" type="text" name ="junta_clave" placeholder=""/>
+                <button id="enviar_clave" type="button" class="btn btn-info waves-effect width-md waves-light">Unirse a la junta</button>
+            </h2>
+        </div>
+        {% endif %}
+    {% else %}
+        <div class="card-box">
+            <h1></h1>
+            <h2>
+                {{junta.nombre}} | <span class="badge badge-danger">CERRADO</span>
+            </h2>
+        </div>
+    {% endif %}
+{% endblock content %}
+
+{% block js %}{% endblock js %}
+{% block script %}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".enviar_clave").on("click", function(){
+            let junta_clave = $("#junta_clave").val();
+            let request = $.ajax({
+                type : "GET",
+                url  : "{% url 'yunta:clave_junta' %}",
+                data : {
+                    "junta_clave" : junta_clave,
+                    "junta_id": "{{junta.id}}"
+                },
+            });
+            request.done(function(response){
+                if (response.error){
+
+                }
+              location.reload();
+            })
+        });
+    });
+</script>{% endblock script %}

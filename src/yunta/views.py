@@ -6,7 +6,9 @@ from django.urls import reverse
 from django.shortcuts import render
 from django.db import transaction
 from .forms import JuntaForm
-from .models import Junta, Monedero, ParticipanteJunta
+from django.shortcuts import get_object_or_404
+from .models import Junta, Monedero, ParticipanteJunta, Usuario
+import pdb
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
@@ -14,7 +16,24 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomeView, self).get_context_data(*args, **kwargs)
-        context['juntas'] = Junta.objects.filter(activo=True)
+        context['juntas'] = ParticipanteJunta.objects.filter(es_activo=True)
+        return context
+
+
+class JuntaViews(LoginRequiredMixin, TemplateView):
+    template_name = 'plataforma/junta.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(JuntaViews, self).get_context_data(*args, **kwargs)
+        junta_id = self.kwargs.get('junta_id')
+        junta = get_object_or_404(Junta, id=junta_id)
+        personas = Usuario.objects.filter(user_id=self.request.user.id)
+        permisos = ParticipanteJunta.objects.filter(junta_id=junta_id, participante_id=self.request.user.id)
+        context.update({
+            'junta': junta,
+            'personas': personas,
+            'permisos': permisos
+        })
         return context
 
 
@@ -41,7 +60,8 @@ class JuntasView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(JuntasView, self).get_context_data(*args, **kwargs)
-        context['juntas'] = Junta.objects.filter(creador_id=self.request.user.id)
+        context['juntas'] = ParticipanteJunta.objects.filter(participante_id=self.request.user.id,
+                                                             es_creador=True)
         return context
 
 
@@ -50,7 +70,9 @@ class MisJuntasView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(MisJuntasView, self).get_context_data(*args, **kwargs)
-        context['juntas'] = Junta.objects.filter(creador_id=self.request.user.id)
+        context['juntas'] = ParticipanteJunta.objects.filter(creador_id=self.request.user.id,
+                                                             participante_id=self.request.user.id,
+                                                             es_creador=True)
         return context
 
 
@@ -86,6 +108,7 @@ class CrearJuntasView(LoginRequiredMixin, TemplateView):
                 participante_junta.nro_cuotas = nro_cuotas
                 participante_junta.cuota = cuota
                 participante_junta.es_creador = True
+                participante_junta.es_activo = True
                 participante_junta.save()
 
             url = reverse('yunta:juntas')
